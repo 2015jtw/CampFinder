@@ -1,0 +1,124 @@
+<% layout('layouts/boilerplate')%>
+
+<div id="map" style="width: 100%; height: 400px; margin-bottom: 5%;"></div>
+
+   
+
+    <!-- search bar -->
+    <div class="row">
+        <div class="col-md-12 offset-md-1 mb-3">
+            <form id="searchBar" action="/campgrounds" method="GET" class="form-inline">
+                <div class="input-group">
+                    <div class="col-10">
+                        <input type="search" name="search" class="form-control" placeholder="Campground search..." required>
+
+                    </div>
+                    <div class="col-2">
+                        <input type="submit" value="search" class="btn btn-primary">
+
+                    </div>
+                </div>
+        
+            </form>
+        </div>
+    
+    </div>
+
+    <h1>All Campgrounds</h1>
+
+    <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+        <div class="col-md-12 my-5">
+            <% if(noMatch.length !== undefined) { %>
+            <h3 style="color: #D32638;"><%= noMatch %></h3>
+            <% } %>
+
+<% for (let campground of campgrounds){%>
+    <div class="card mb-3">
+        <div class="row">
+
+            <div class="col-md-4">
+                <%if(campground.images.length) {%>
+                <img class="img-fluid" alt="" src="<%=campground.images[0].url%>">
+                <% }else {%>
+                <img class="img-fluid" alt=""
+                    src="https://res.cloudinary.com/dqazaofh2/image/upload/v1622753198/Yelpcamp/y6duograxrrxu7jwpqm2.jpg">
+                <% } %>
+            </div>
+
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <%= campground.title %>
+                </h5>
+                <p class="card-text"><%= campground.description  %> </p>
+                <p class="card-text">
+                    <small class="text-muted"> <%= campground.location %> </small>
+                </p>
+                <p class="card-text">
+                    <small class="text-muted"> <%= campground.author.username %> </small>
+                </p>
+                <a href="/campgrounds/<%= campground._id %> " class="btn btn-primary">View <%= campground.title %> </a>
+            </div>
+        </div>
+    </div>
+</div>
+<%  } %>
+
+<!-- pagination navbar -->
+<nav aria-label="Page navigation example">
+    <div class="mt-5 mb-3">
+        <% if (pages && pages > 0) { %>
+        <ul class="pagination text-center justify-content-center">
+            <% if (current == 1) { %>
+                <li class="page-link disabled"><a>First</a></li>
+            <% } else { %>
+                <li class="page-link"><a href="/campgrounds<%if(search){%>?search=<%=search%><%}%>">First</a></li>
+            <% } %>
+            <% if (current == 1) { %>
+                <li class="page-link disabled"><a>«</a></li>
+            <% } else { %>
+                <li class="page-link"><a href="/campgrounds?page=<%= Number(current) - 1 %><%if(search){%>&search=<%=search%><%}%>">«</a></li>
+            <% } %>
+
+            <% let i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+            <% if (i !== 1) { %>
+            <li class="page-link disabled"><a>...</a></li>
+            <% } %>
+            <!-- looks like an error in the for loop syntax, but codes executing -->
+            <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+            <% if (i == current) { %>
+            <li class="page-link active"><a><%= i %></a></li>
+            <% } else { %>
+            <li class="page-link"><a href="/campgrounds?page=<%= i %><%if(search){%>&search=<%=search%><%}%>"><%= i %></a></li>
+            <% } %>
+            <% if (i == Number(current) + 4 && i < pages) { %>
+            <li class="page-link disabled"><a>...</a></li>
+            <% } %>
+            <% } %>
+     
+            <% if (current == pages) { %>
+            <li class="page-link disabled"><a>»</a></li>
+            <% } else { %>
+            <li class="page-link"><a href="/campgrounds?page=<%= Number(current) + 1 %><%if(search){%>&search=<%=search%><%}%>">»</a></li>
+            <% } %>
+     
+            <% if (current == pages) { %>
+            <li class="page-link disabled"><a>Last</a></li>
+            <% } else { %>
+            <li class="page-link"><a href="/campgrounds?page=<%= pages %><%if(search){%>&search=<%=search%><%}%>">Last</a></li>
+            <% } %>
+        </ul>
+        <% } %>
+    </div>
+  </nav>
+  
+
+
+<script>
+    const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+    const campgrounds = {features: <%- JSON.stringify(campgrounds) %>}
+
+</script>
+
+
+<script src="/js/clusterMap.js"></script>
