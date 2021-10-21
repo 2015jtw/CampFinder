@@ -1,3 +1,7 @@
+// url for campfinder --> https://rocky-castle-23837.herokuapp.com/
+// run this code to debug heroku error --> heroku logs --tail
+
+
 // code so that when website is live/production
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
@@ -134,6 +138,8 @@ app.use((err, req, res, next) => {
     res.status(status).render('error', { err });
 })
 
-app.listen(3000, () => {
-    console.log("Serving on port 3000")
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+    console.log(`Serving on port ${port}`)
 })
