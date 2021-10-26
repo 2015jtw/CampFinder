@@ -25,6 +25,7 @@ const MongoDBStore = require("connect-mongo")(session);
 const passport = require('passport');
 const passportLocal = require('passport-local')
 
+
 // requiring all models
 const Campground = require('./models/campground')
 const Review = require('./models/reviews')
