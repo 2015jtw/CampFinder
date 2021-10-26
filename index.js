@@ -1,3 +1,5 @@
+// FINAL CAMPFINDER PROJECT
+
 // url for campfinder --> https://rocky-castle-23837.herokuapp.com/
 // run this code to debug heroku error --> heroku logs --tail
 
