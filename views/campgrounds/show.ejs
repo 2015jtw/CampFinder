@@ -61,6 +61,7 @@
         <div id='map' style='width: 400px; height: 300px; margin-bottom: 1rem; margin-left: 5rem;' class="d-flex justify-content-center"></div>
 
         <% if(currentUser) { %>
+
         <!-- form for submitting reviews -->
         <form action="/campgrounds/<%= campground._id %>/reviews" method="POST" class="mb-3 validated-form" novalidate>
 
@@ -99,7 +100,7 @@
         <% } %>
 
         <% for(let review of campground.reviews){ %>
-        <div class="card card-body mb-3">
+        <div class="card card-body mb-5">
             <div class="mb-3">
                 <h5 class="card-title">By: <%= review.author.username %></h5>
                 <p class="starability-result" data-rating="<%= review.rating %>">
