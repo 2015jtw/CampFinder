@@ -45,9 +45,10 @@ const campGroundSchema = new Schema({
 }, opts);
 
 // this is the function where i can change the layout of the main campgrounds popups
+// https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22346260#questions/16320046/
 campGroundSchema.virtual('properties.popUpMarkup').get(function () {
 
-    return `<h3>${this.title}</h3><p>${this.price}</p><button><a href="/campgrounds/${this._id}">See Campground</a></button>`
+    return `<h3>${this.title}</h3><p>$${this.price} a night</p><button><a href="/campgrounds/${this._id}">See Campground</a></button>`
     
     // `<a href="/campgrounds/${this._id}">${this.title}</a>`
 });
