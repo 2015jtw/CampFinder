@@ -15,7 +15,7 @@ new mapboxgl.Marker()
     .setPopup(
         new mapboxgl.Popup({ offset: 25 })
             .setHTML(
-                `<h4>${campground.title}</h4><p>$${campground.price} a night</p>`
+                `<h4>${campground.title}</h4><p>${campground.location}</p>`
             )
     )
     .addTo(map)
