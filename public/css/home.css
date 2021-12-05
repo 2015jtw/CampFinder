@@ -36,8 +36,3 @@ body{
     color: #333;
     text-shadow: none;
 }
-
-div .mapboxgl-popup-content{
-    border-radius: 5%;
-    color: blue;
-}
