@@ -117,7 +117,7 @@ while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
 coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
 }
  
-new mapboxgl.Popup({className: "campground-popup"})
+new mapboxgl.Popup({className: 'campground-popup'})
 .setLngLat(coordinates)
 .setHTML(popText)
 .addTo(map);
