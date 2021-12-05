@@ -37,7 +37,7 @@ body{
     text-shadow: none;
 }
 
-.campground-popup{
+.mapboxgl-popup-content{
     border-radius: 25%;
     color: blue;
 }
