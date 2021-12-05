@@ -37,3 +37,7 @@ body{
     text-shadow: none;
 }
 
+.campground-popup{
+    border-radius: 25%;
+    color: blue;
+}
