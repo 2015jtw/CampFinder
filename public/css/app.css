@@ -8,3 +8,18 @@
     margin-top: 3%;
     
 }
+
+.mapboxgl-popup-content p{
+    text-align: center;
+}
+
+
+.mapboxgl-popup-content div{
+    text-align: center;
+}
+
+
+.mapboxgl-popup-content button{
+    height: 2rem;
+    width: 8rem;
+}
