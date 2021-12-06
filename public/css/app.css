@@ -19,7 +19,7 @@
 }
 
 
-.mapboxgl-popup-content button{
-    height: 2rem;
-    width: 8rem;
+.mapboxgl-popup-content a{
+    color: white;
+    text-decoration: none;
 }
